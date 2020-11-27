@@ -19,17 +19,20 @@
 
 
     <script>
-        $(":button").click(function AddItem() {
-            // TODO
-            let text = document.getElementById("newText").value;
+        var i = 1;
+        $(document).ready(function() {
+            $(":button").click(function AddItem() {
+                // TODO
+                let text = document.getElementById("newText").value;
 
-            $("#items").append(`<li>${text}<a href="#" type="click" class="delete">[Delete]</a></li>`);
-            $("#newText").val("");
+                $("#items").append(`<li>${text}<a href="#" type="click" id="list${i}">[Delete]</a></li>`);
+                i++;
+                $("#newText").val("");
+            });
+            $(document).on("click", "ul li", function() {
+                $(this).remove()
+            });
 
-        });
-
-        $("ul").click(function() {
-            $(this).hide();
         });
     </script>
 </body>
