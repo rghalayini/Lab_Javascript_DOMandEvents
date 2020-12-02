@@ -19,21 +19,52 @@
 
 
     <script>
-        var i = 1;
-        $(document).ready(function() {
-            $(":button").click(function AddItem() {
-                // TODO
-                let text = document.getElementById("newText").value;
+        function addItem() {
+            let text = document.getElementById("newText").value;
+            let ul = document.getElementById("items");
+            let li = document.createElement('li');
 
-                $("#items").append(`<li>${text}<a href="#" type="click" id="list${i}">[Delete]</a></li>`);
-                i++;
-                $("#newText").val("");
-            });
-            $(document).on("click", "ul li", function() {
-                $(this).remove()
-            });
+            li.appendChild(document.createTextNode(text));
+            let span = document.createElement('span');
+            span.innerHTML = "<a href='#'>[Delete]</a>";
+            span.firstChild.addEventListener("click", deleteItem);
+            li.appendChild(span);
+            ul.appendChild(li);
 
-        });
+            document.getElementById("newText").value = '';
+
+            function deleteItem() {
+                let deleteList = this.parentNode.parentNode;
+                let deleteListParent = deleteList.parentNode;
+                deleteListParent.removeChild(deleteList);
+            }
+        };
+
+
+
+
+
+
+
+
+        //--- --- --- --- --- to do it with Jquery instead --- --- --- --- --- --- ---
+        //--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+        // var i = 1;
+        // $(document).ready(function() {
+        //     $(":button").click(function AddItem() {
+        //         // TODO
+        //         let text = document.getElementById("newText").value;
+
+        //         $("#items").append(`<li>${text}<a href="#" type="click" id="list${i}">[Delete]</a></li>`);
+        //         i++;
+        //         $("#newText").val("");
+        //     });
+        //     $(document).on("click", "ul li", function() {
+        //         $(this).remove()
+        //     });
+
+        // });
     </script>
 </body>
 
